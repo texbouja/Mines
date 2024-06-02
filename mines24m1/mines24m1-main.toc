@@ -1,0 +1,12 @@
+\babel@toc {french}{}\relax 
+\contentsline {problem}{\numberline {1}\textsc {Énoncé }\unhbox \voidb@x \penalty \@M \ :\unhbox \voidb@x \penalty \@M \ Généralisation d'une intégrale de Dirichlet et application}{2}{problem.0.1}%
+\contentsline {parti}{\numberline {I}Calcul d'une intégrale}{2}{parti.0.1.1}%
+\contentsline {parti}{\numberline {II}Une expression (utile) de la fonction sinus}{4}{parti.0.1.2}%
+\contentsline {parti}{\numberline {III}Calcul d'une intégrale de Dirichlet généralisée}{4}{parti.0.1.3}%
+\contentsline {parti}{\numberline {IV}Calcul de \(E(|S_n|)\)}{5}{parti.0.1.4}%
+\contentsline {problem}{\numberline {2}\textsc { Corrigé \ignorespaces }}{7}{problem.0.2}%
+\contentsline {parti}{\numberline {I}Calcul d'une intégrale}{7}{parti.0.2.1}%
+\contentsline {parti}{\numberline {II}Une expression (utile) de la fonction sinus}{9}{parti.0.2.2}%
+\contentsline {parti}{\numberline {III}Calcul d'une intégrale de Dirichlet généralisée}{9}{parti.0.2.3}%
+\contentsline {parti}{\numberline {IV}Calcul de \(E(|S_n|)\)}{9}{parti.0.2.4}%
+\contentsfinish 

@@ -1,0 +1,408 @@
+\documentclass[11pt,solution]{cpgedev}
+
+\cpgegeometry{tablet}
+\cpgefont{utopia}
+
+\usepackage{parskip}
+\Document{Sujet de concours}
+\Concours{Mines et Ponts}
+\Epreuve{Mathématique 1}
+\Session{2024}   
+
+ 
+\begin{document} 
+
+\cpgesetuplists{
+    enumi={n=|1|, d*=\bfseries#1, m*},
+}
+\cpgesetupsectiontitle{parti={
+            label=|I|,
+            label deco=\bfseries Partie #1~:~,
+            fill=right
+}} 
+\cpgesetupmath{symbol={C=\mathbf C, R=\mathbf R, N=\mathbf N}}
+\def\i{\mathrm i}
+
+\titre( 
+    |document| \par
+    \iftitlepage\bigskip\hrule\bigskip\fi
+    |concours| \\
+    |session|  \\
+    |epreuve|  \\
+    |auteur|)
+
+\tableofcontents  
+
+\begin{enonce}{mines24m1}\op{corrige={before title=\clearpage}}
+    (Généralisation d'une intégrale de Dirichlet et application)
+
+    Le but de ce sujet est de calculer l'intégrale de Dirichlet généralisée
+\<
+    \int_0^{+\infty} \frac{1-(\cos (t))^{2 p+1}}{t^2} \diff  t
+\>
+    et d'utiliser ce calcul pour évaluer une espérance.
+
+\wparti{Calcul d'une intégrale}
+
+    Dans tout ce qui suit, $x$ est un élément de $\ii ] 0 , 1[$ fixé.
+\xques+ %1 
+    Montrer que pour tout $\theta \in\ii ]-\pi , \pi[$, la fonction $f$ définie par
+    \<
+        \func f{\ii] 0,+\infty[}  \C  
+        t {\ds\frac{t^{x-1}}{1+t \e^{\i \theta}}}
+    \>
+    est définie et intégrable sur $\ii ] 0 ,+\infty[$.
+\begin{solution}
+    Soit $\theta\in\ii]-\pi,\pi[$. La fonction $t\longmapsto 1+t\e^{\i\theta}$ ne s'annule pas sur $\ii ]0,+\infty[$ donc $f$ est continue sur $\ii]0,+\infty[$. En outre
+    \<\al{}
+        f(t) & \sim_{t\to 0}\frac1{t^{1-x}} &&&
+        |f(t)| & \sim_{t\to+\infty}\frac{1}{t^{2-x}}
+    \>
+    avec $1-x<1$ et $2-x>1$. Donc par comparaison à des fonctions de Riemann, 
+    \<\r 
+        la fonction $f$ est intégrable sur $\ii]0,+\infty[$
+    \>
+\end{solution}
+\exit 
+    Soit $r$ la fonction définie par
+    \<
+        \func r {\ii ] -\pi , \pi[}   \C  
+        \theta {\ds \int_0^{+\infty} \frac{t^{x-1}}{1+t \e^{\i \theta}} \diff  t }
+    \>
+
+\xques\r %2
+    Montrer que la fonction $r$ est de classe $\mathcal{C}^1$ sur $\ii ]-\pi , \pi[$ et que :
+    \<
+        \forall \theta \in\ii ]-\pi , \pi[, \quad r^{\prime}(\theta)=-\i \e^{\i \theta} \cdot \int_0^{+\infty} \frac{t^x}{\left(1+t \mathrm{e}^{\i \theta}\right)^2} \diff  t .
+    \>
+
+    \begin{ind}
+        soit $\beta \in\ii] 0 , \pi[$, montrer que pour tout $\theta \in\ii [-\beta , \beta]$ et $t \in[0,+\infty[$,
+    \<
+        \left|1+t \e^{\i \theta}\right|^2 \geq\left|1+t \e^{\i \beta}\right|^2=(t+\cos (\beta))^2+(\sin (\beta))^2
+    \>
+    \end{ind}
+
+\begin{solution}
+    Considérons la fonction 
+    \<
+        \func*{\varphi}{(\theta,t)}{\frac{t^{x-1}}{1+t\e^{\i\theta}}} \quad (\theta,t)\in D=\ii ]-\pi,\pi[\times \ii]0,+\infty[ 
+    \>
+    \begin{discussion}
+    \unite 
+    $\varphi$ est de classe $\mathcal C^1$ sur $D$ et on a 
+    \<
+        \xderp \varphi\theta(\theta, t)=-\frac{\i t^x\e^{\i \theta}}{(1+t\e^{\i \theta})^2}
+    \>
+    \unite 
+    La fonction $r$ est bien définie sur $\ii]-\pi,\pi[$ selon la question précédente
+    \unite Soit comme suggéré par l'indication de l'énoncé $\beta\in\ii]0,\pi[$. Fixons $t>0$ 
+    \< 
+        \delim\sz2| 1+t\e^{\i \theta}|^2 = 
+        \delim\sz2(1+t\cos\theta)^2+t^2\sin^2\theta  =
+        1+2t\cos\theta+t^2
+    \>
+    La fonction $\cos$ est décroissante sur $\ii[0,\pi]$ donc 
+    \<
+        \xforall \theta\in\ii[0,\beta]\; 
+        1+2\cos\theta+t^2\geq 1+2\cos\beta+t^2
+    \>
+    ce qui amène, par parité de la fonction $\cos$
+    \< 
+        \xforall \theta\in\ii[-\beta,\beta]\;
+        \delim| 1+t\e^{\i \theta}|^2\geq \delim| 1+t\e^{\i \beta}|^2
+    \>
+    \<\lt{On en déduit que}
+        \xforall (\theta,t)\in\ii[-\beta,\beta]{}\times{}]0,+\infty[\;
+        \delim|\xder \varphi\theta(\theta,t)|\leq \frac{t^x}{|1+t\e^{\i \beta}|^2}
+    \>
+    La fonction $\rho=\delim|\xder \varphi\theta(\beta,\cdot)|$ est continue et elle est intégrable sur $\ii]0,+\infty[$ car 
+    \<\al{}
+        \delim\sz4|\xder\varphi\theta(\beta,t)| &\sim_{t\to0} t^x &&&
+        \delim\sz4|\xder\varphi\theta(\beta,t)| &\sim_{t\to+\infty} \frac1{t^{2-x}}
+    \>
+    avec $x>0$ et $2-x>1$.
+    \end{discussion}
+    Toutes les hypothèses sont réunies pour pouvoir appliquer la formule de Leibniz sur l'intervalle $[-\beta,\beta]$. Le réel $\beta$ étant quelconque dans $\ii]0,\pi[$ on conclut que 
+    \<\r\wd{100}
+        La fonction $r$ est de classe $\mathcal C^1$ sur $\ii]-\pi,\pi[$ et 
+        \<  
+            \xforall \theta\in\ii]-\pi,\pi[\;
+            r'(\theta)=
+            -i\e^{\i \theta} \int_0^{+\infty} \frac{t^x}{\left(1+t \mathrm{e}^{\i \theta}\right)^2} \diff t 
+        \>
+    \>
+\end{solution} 
+ 
+
+ 
+Soit $g$ la fonction définie par
+\<
+    \func g{\ii ]-\pi , \pi[} \C
+    \theta {\ds \e^{\i x \theta} \int_0^{+\infty} \frac{t^{x-1}}{1+t \e^{\i \theta}} \diff  t} 
+\>
+
+\xques %3
+    Montrer que la fonction $g$ est de classe $\mathcal{C}^1$ sur $\ii ]-\pi , \pi[$ et que pour tout $\theta \in\ii ]-\pi , \pi[$,
+    \<
+        g^{\prime}(\theta)=\i \e^{\i x \theta} \int_0^{+\infty} h^{\prime}(t) \diff  t
+    \>
+    où $h$ est la fonction définie par
+    \<
+        \func h{\ii]0,+\infty[} \C  
+        t {\ds\frac{t^x}{1+t \e^{\i\theta}}} 
+    \>
+Calculer $h(0)$ et $\llim _{t \to+\infty} h(t)$.
+En déduire que la fonction $g$ est constante sur $\ii ]-\pi,\pi[$.
+
+\begin{solution}
+    Notons que pour tout $\theta\in\ii]-\pi,\pi[$
+    \< g(\theta)=\e^{\i x\theta}r(\theta) \>
+     La fonction $g$ est de classe $\mathcal C^1$ comme produit de deux fonctions qui le sont et on a 
+    \<\al{}
+        g'(\theta) &= 
+        \i x\e^{\i x\theta}r(x)+\e^{\i x\theta}r'(\theta) \\ &=
+        i\e^{\i x\theta}\delim(\xint_0^{+\infty}[x\frac{t^{x-1}}{1+t\e^{\i\theta}}-\e^{i\theta}\frac{t^x}{(1+t\e^{\i\theta})^2}]) \\ &=
+        \i\e^{\i x\theta}\xint_0^{+\infty}{h'(t)}
+    \>
+    où $h$ est la fonction indiquée dans l'énoncé :
+    \< h(t)=\frac{t^x}{1+t \e^{\i\theta}} \>
+    On a $h(t)\lsim_{t\to 0}t^x$, $h(t)\lsim_{t\to\infty}\xfrac{{\e^{-\i\theta}}}{{t^{1-x}}}$ et $x\in\ii]0,1[$
+    \<\al{}
+        \llim_{t\to0}h(t) &= 0 &&& \llim_{t\to+\infty}h(t)=0
+    \>
+    On en déduit que 
+    \<
+        g'(\theta)=\i\e^{\i\theta}\delim(\lim_{t\to+\infty}h(t)-\lim_{t\to 0}h(t))=0
+    \>
+    $g$ est de classe $\mathcal C^1$ de dérivée nulle sur \emph{l'intervalle} $\ii]-\pi,\pi[$ donc
+    \<\r 
+        La fonction $g$ est constante sur $\ii]-\pi,\pi[$.
+    \>
+    \begin{nb} 
+        Une simple intégration par partie effectuée sur l'intégrale dans $r'(\theta)$ aboutit à la relation 
+        \< r'(\theta)+\i xr(\theta)=0 \>
+        exprimant ainsi que $g'(\theta)=0$. 
+    \end{nb}
+\end{solution}
+
+\xques %4
+    Montrer que pour tout $\theta \in\ii ] 0 , \pi[$,
+    \<\compactbreak{
+         g(\theta) \sin (x \theta)=\frac{1}{2 \i}\left(g(-\theta) \e^{\i x \theta}-g(\theta) \e^{-\i x \theta}\right)= {} \\
+        \sin (\theta) \int_0^{+\infty} \frac{t^x}{t^2+2 t \cos (\theta)+1} \diff  t}
+    \>
+\begin{solution}
+    Soit $\theta\in\ii]0,\pi[$. La fonction $g$ est constante et on a $\OV{g(\theta)}=g(-\theta)=g(\theta)$ donc 
+    \begin{xalign}
+        \<
+            g(\theta)\sin(x\theta) &=
+            \frac1{2\i}\delim(g(\theta)\e^{\i x\theta}-g(\theta)\e^{-\i x\theta}) 
+        \>
+        \eline 
+        \<\lt{donc}\fr{result}
+           \sff &=
+            \frac1{2\i}\delim\sz2(g(-\theta)\e^{\i x\theta}-g(\theta)\e^{-\i x\theta})
+        \>
+        \eline 
+        \<
+            &=
+            \xim\sz2(g(\theta)\e^{-\i x\theta})      
+        \>
+        (car $g(-\theta)=\OV{g(\theta)}$)
+        \eline 
+        \<
+            &=
+            \xim(\int_0^{+\infty}\frac{t^{x-1}}{1+t\e^{\i \theta}}\diff t)
+        \>
+        \eline 
+        \<
+            &=
+            \xim(\int_0^{+\infty}\frac{t^{x-1}(1+t\e^{-i\theta})}{|1+t\e^{\i \theta}|^2}\diff t)
+        \>
+        \eline 
+        \<\lt{d'où}\fr{result}
+            \sff &=
+            \sin(\theta)\int_0^{+\infty}\frac{t^x}{1+2t\cos\theta+t^2}\diff t
+        \>
+    \end{xalign}
+    
+\end{solution}
+
+    
+\xques %5
+     En déduire que :
+    \<
+        \xforall \theta \in\ii ] 0 , \pi[\; 
+        g(\theta) \sin (\theta x)=\int_{\xcotan \theta}^{+\infty} \frac{(u \sin (\theta)-\cos (\theta))^x}{1+u^2} \diff  u
+    \>
+    où  $\xcotan\theta)=\ds\frac{\cos (\theta)}{\sin (\theta)}$
+
+\begin{solution}
+Soit $\theta\in\ii]0,\pi[$. Sachant que $\sin\theta\ne0$ on peut poser pour tout réel $t>0$, $t=u\sin\theta-\cos\theta$. On a alors
+    \<t^2+2t\cos\theta+1=(t+\cos\theta)^2+\sin^2\theta=(1+u^2)\sin^2\theta\>
+L'application $u\longmapsto u\sin\theta-\cos\theta$ est une bijection de classe $\mathcal C^1$ de $\ii]\cotan\theta,+\infty[$ sur $\ii]0,+\infty[$ et l'integrale $\int_{0}^{+\infty}\frac{t^x}{1+2t\cos\theta+t^2}\diff t$ est convergente donc le changement de variable $t=u\sin\theta-\cos\theta$ donne 
+\<
+\int_{0}^{+\infty}\frac{t^x}{1+2t\cos\theta+t^2}\diff t=
+\frac1{\sin\theta}\int_{\xcotan \theta}^{+\infty} \frac{(u \sin (\theta)-\cos (\theta))^x}{1+u^2} \diff  u
+\>        
+\<\lt{Soit}\fr{result}
+    g(\theta) \sin (\theta x)=\int_{\xcotan \theta}^{+\infty} \frac{(u \sin (\theta)-\cos (\theta))^x}{1+u^2} \diff  u
+\>
+    
+\end{solution}
+
+\xques %6
+Montrer, en utilisant le théorème de convergence dominée, que :
+\<
+\lim _{\theta \to \pi^{-}} g(\theta) \sin (x \theta)=\int_{-\infty}^{+\infty} \frac{\diff  u}{1+u^2}
+\>
+
+\begin{solution}
+    Dans le but d'utiliser le \ac{tcd}, considérons une suite $(\theta_n)_n$ d'éléments de $\ii[0,\pi[$ qui converge ves $\pi$. On a alors pour tout $n\in\N$
+    \<
+        g(\theta_n)\sin(x\theta_n)=
+        \int_{0}^{+\infty}\frac{t^x\sin(\theta_n)}{1+2t\cos\theta_n+t^2}\diff t=
+        \int_{0}^{+\infty}h_n(t)\diff t  
+    \>    
+\end{solution}
+
+\xques %7
+ En déduire que
+\<
+\int_0^{+\infty} \frac{t^{x-1}}{1+t} \diff  t=\frac{\pi}{\sin (\pi x)}
+\>
+\exit 
+
+\wparti{Une expression (utile) de la fonction sinus}
+On rappelle que $x$ est un élément de $\ii ]0, 1[$ fixé.
+\xques\r %8
+ Montrer que.
+\<
+\int_0^{+\infty} \frac{t^{x-1}}{1+t} \diff  t=\int_0^1\left(\frac{t^{x-1}}{1+t}+\frac{t^{-x}}{1+t}\right) \diff  t
+\>
+
+
+\xques %9 
+Montrer que:
+\<
+\int_1^1 \frac{t^{x-1}}{1+t} \diff  t=\sum_{k=0}^{+\infty} \frac{(-1)^k}{k+x}
+\>
+
+\xques %10 
+ Établir l'identité
+ \<
+\int_0^{+\infty} \frac{t^{x-1}}{1+t} \diff  t=\sum_{n=0}^{+\infty} \frac{(-1)^n}{n+x}+\sum_{n=0}^{+\infty} \frac{(-1)^n}{n+1-x} .
+\>
+\xques %11  
+En déduire que l'on a
+\<
+\frac{\pi}{\sin (\pi x)}=\frac{1}{x}-\sum_{n=1}^{+\infty} \frac{2(-1)^n x}{n^2-x^2} .
+\>
+\xques %12
+ En déduire enfin que :
+ \<
+\forall y \in\ii ] 0 , \pi[, \quad \sum_{n=1}^{+\infty} \frac{2(-1)^n y \sin (y)}{y^2-n^2 \pi^2}=1-\frac{\sin (y)}{y}
+\>
+\exit 
+
+\wparti{Calcul d'une intégrale de Dirichlet généralisée}
+\xques\r %13
+ Montrer que l'intégrale
+ \<
+\int_0^{+\infty} \frac{1-(\cos (t))^{2 p+1}}{t^2} \diff  t
+\>
+converge et que :
+\<
+\int_0^{+\infty} \frac{1-(\cos (t))^{2 p+1}}{t^2} \diff  t=(2 p+1) \int_0^{+\infty}(\cos (t))^{2 p} \frac{\sin (t)}{t} \diff  t .
+\>
+\xques %14
+ Montrer que pour tout $n \in \N^*$ :
+ \<
+\int_{\frac{\pi}{2}+(n-1) \pi}^{\frac{\pi}{2}+n \pi}(\cos (t))^{2 p} \frac{\sin (t)}{t} \diff  t=\int_0^{\frac{\pi}{2}}(\cos (t))^{2 p} \frac{2(-1)^n t \sin (t)}{t^2-n^2 \pi^2} \diff  t .
+\>
+\xques %15
+ En déduire que :
+ \<
+\int_{\frac{\pi}{2}}^{+\infty}(\cos (t))^{2 p} \frac{\sin (t)}{t} \diff  t=\int_0^{\frac{\pi}{2}}(\cos (t))^{2 p}\left(\sum_{n=1}^{+\infty} \frac{2(-1)^n t \sin (t)}{t^2-n^2 \pi^2}\right) \diff  t .
+\>
+\xques %16
+ En déduire que :
+ \<
+\int_0^{+\infty}(\cos (t))^{2 p} \frac{\sin (t)}{t} \diff t=\int_0^{\frac{\pi}{2}}(\cos (t))^{2 p} \diff  t .
+\>
+
+Dans le cas $p=0$, cette intégrale est communément appelée "Intégrale de Dirichlet".
+
+\xques %17
+ Montrer que :
+ \<
+(\cos (t))^{2 p}=\frac{1}{2^{2 p}}\delim(\binom{2 p}{p}+2 \sum_{k=0}^{p-1}\binom{2 p}{k} \cos (2(p-k) t))
+\>
+
+\begin{ind}
+On pourra développer $\ds\left(\frac{\e^{\i t}+\e^{-\i t}}{2}\right)^{2 p}$.
+\end{ind}
+\xques %18
+ En déduire que :
+ \<
+\int_0^{+\infty} \frac{1-(\cos (t))^{2 p+1}}{t^2} \diff  t=\frac{\pi}{2} \frac{(2 p+1)!}{2^{2 p} \cdot(p!)^2}
+\>
+\exit
+
+\wparti{Calcul de \(E(|S_n|)\)}
+Toutes les variables aléatoires sont définies sur un même espace probabilisé $(\Omega, \mathcal{A}, P)$. Soient $\left(X_k\right)_{k \in\N^*}$ des variables aléatoires indépendantes, de même loi donnée par :
+\<
+\xPr(X_1=-1)=
+\xPr(X_1=1)=\frac{1}{2}
+\>
+
+
+Pour tout $n \in \N^*$, on note $S_n=\sum_{k=1}^n X_k$.
+
+\xques\r %19 
+Déterminer, pour tout $n \in \N^*, \xEs(S_n)$ et 
+$\xVa(S_n)$.
+
+Soient $S$ et $T$ deux variables aléatoires indépendantes prenant toutes deux un nombre fini de valeurs réelles. On suppose que $T$ et $-T$ suivent la même loi.
+\xques %20
+ Montrer que :
+ \<
+\xEs\sz1(\cos (S+T))=\xEs\sz1(\cos (S)) \xEs(\cos (T)) .
+\>
+\xques %21
+ En déduire que pour tout $n \in \N^*$, et pour tout $t \in \R $ :
+ \<
+\xEs(\cos \left(t S_n\right))=(\cos (t))^n
+\>
+
+\xques %22
+Soient $a,b\in\R$ tels que $a\ne 0$ et $|b|\leq |a|$. Montrer que 
+\< |a+b|=|a|+\xsign(a)b \>
+ou $\sign(a)=\xfrac{x}{{|x|}}$ pour $x$ réel non nul- En déduire que
+\< 
+    \xforall n\in\N^*\;
+    \xEs(|S_{2n}|)=\xEs(|S_{2n-1|})
+\>
+
+\xques %23
+Montrer que pour tout $s\in\R$
+\< \int_0^{+\infty}\frac{1-\cos(st)}{t^2}\diff t =\frac\pi2|s|\>
+
+\xques %24
+En déduire que pour tout $n\in\N^*$ :
+\< \xEs(|S_n|)=\frac2\pi
+\int_0^{+\infty}\frac{1-\delim\sz1(\cos t)^n}{t^2}\diff t
+\>
+
+\xques %25
+Conclure que :
+\<
+    \xforall n\in\N^*\;
+    \xEs(|S_{2n}|)=\xEs(|S_{2n-1}|)=
+    \frac{(2n-1)!}{2^{2n-1}\delim\sz2((n-1)!)^2}
+\>
+\exit 
+\end{enonce} 
+
+\end{document}
