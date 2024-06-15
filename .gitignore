@@ -50,6 +50,7 @@
 # latexrun
 latex.out/
 tmp/
+.vscode/
 
 ## Auxiliary and intermediate files from other packages:
 # algorithms
