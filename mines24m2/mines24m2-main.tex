@@ -1,40 +1,41 @@
-\documentclass[12pt,solution]{cpgedev}
+\documentclass[11pt,straight,solution]{cpgedev}
 
-\cpgegeometry{tablet} 
+\cpgegeometry{tablet}
+\cpgetheme[logo=fes]{ibnghazi}
+%\cpgeconfig{mines}
 \cpgefont{libertine}
 
 \usepackage[hypcap=false]{caption}
 \usepackage{parskip}
 
+ 
+\Matiere{Mathématique}
 \Document{Sujet de concours} 
-\Concours{Mines et Ponts}
+\Concours{Mines et Ponts} 
 \Epreuve{Mathématiques 2}
 \Session{2024} 
-\Auteur{Sadik Boujaida}
+\Duree{4} 
+\Auteur{Sadik Boujaida}  
+\Classe{Filière MP}
 \Preauteur{Corrigé proposé par}
 \Email{ibouja@gmail.com}
-\Website{texbouja.ma}
+\Website{https://github.com/texbouja/Mines2024/tree/main/mines24m2}
 
-%\titlepagefalse
-\cpgesettitle*{
-    |document| \par\bigskip\hrule\bigskip |concours| \\ |session| \\ 
-    |epreuve| \par\bigskip |auteur| 
-    \par \vskip3cm \tableofcontents
-}
-\cpgesettitle{
-    |document| \par\bigskip\ |concours| \\ |session| \\ 
-    |epreuve| \par\bigskip |auteur|
+\cpgesetuplists{%
+    enumi=  {n=Q|1|, m+ ,s=12pt},
+    enumii= {n=Q|Q|\itshape|a|,m*, s=6pt}
 }
 
-\cpgesetlabel{enumi}{|1|}
-\cpgesetlabel{partii}{|A|}
-\cpgesetdeco{partiilabel}{Section #1 -- }
-
-\begin{document} 
+\cpgesetlabel{parti}{Partie |I|}
+\cpgesetlabel{partii}{Section |A|}
 
 \cpgesetupmath{symbol={corps=R}}
 \let\i\isymb
 \def\X#1{X_{\{#1\}}}
+
+
+
+\begin{document} 
 
 \cpgesethead
     (|concours| -- |session| -- |epreuve|)
@@ -42,18 +43,44 @@
     (|problem|)
 \cpgesetfoot()(|pages|)()
 
+\cpgesettitle{
+    \ifdefmeta{document}
+        |document| \par \vskip\dimexpr\bigskipamount*3
+    \fi
+    \ifdefmeta{concours}
+        |concours| \\
+    \fi
+    \ifdefmeta{epreuve}
+        |epreuve|  
+    \fi
+    \ifdefmeta{session}
+        |session|  \\
+    \fi 
+    \ifdefmeta{auteur}
+        \ifsolution
+            \par \vskip\dimexpr\bigskipamount*2
+            |auteur| 
+        \fi
+    \fi
+}
+\cpgesettitle*{
+        |document| 
+    \bigskip\hrule\bigskip\bigskip
+        |concours|
+        |epreuve| 
+        |session|  \vskip 1cm plus .2fill 
+    \ifsolution 
+        |auteur| 
+        |website|  
+    \fi
+}
+
 \titre
-
-
-\begin{enonce}{mines24m2}
+%\devoir\op{name =ds,number=11,after title=|duree|}{Devoir surveillé}(Théorie des graphe)
+\begin{enonce*}{mines24m2}\op{score}
     (Phénomènes de seuil dans les graphes)
     <enonce>
-   
     \everymath{\displaystyle}
-
-\showscore
-
-
     Dans ce problème, $n$ désigne un entier supérieur à 1 .
     On désigne par $\iic{1,n}$ l'ensemble des entiers compris entre 1 et $n$. 
     
@@ -66,7 +93,7 @@
 
     Un graphe $G$ est un couple $(S, A)$ où :
 
-    \xit*+
+    \xit\i+
         $S$ désigne un ensemble fini non vide d'éléments appelés sommets du graphe $G$ 
     \xit
         $A$ désigne un ensemble éventuellement vide d'éléments appelés arêtes du graphe $G$, une arête étant un ensemble $\left\{s, s^{\prime}\right\}$ où $s$ et $s^{\prime}$ sont des sommets distincts de $S$.
@@ -76,7 +103,7 @@
     Par convention, le graphe vide est le couple d'ensembles vides $(\varnothing, \varnothing)$.
 
     On peut représenter un graphe non vide dans un plan à l'aide :
-    \xit*+ 
+    \xit\i+ 
         de disques schématisant les sommets du graphe
     \xit
         de segments reliant ces disques pour les arêtes du graphe.
@@ -124,7 +151,7 @@ On a représenté \textsc{Figure 2} une étoile de centre 4 à 5 branches avec $
 %FIGURE 2 - une étoile à 5 branches
 
 Soient $G=(S, A)$ et $G^{\prime}=\left(S^{\prime}, A^{\prime}\right)$ deux graphes ; on dit que :
-\xit*+ $G^{\prime}$ est inclus dans $G$ si $S^{\prime} \subset S$ et $A^{\prime} \subset A$
+\xit\i+ $G^{\prime}$ est inclus dans $G$ si $S^{\prime} \subset S$ et $A^{\prime} \subset A$
 \xit $G^{\prime}$ est une copie de $G$ s'il existe une bijection $\sigma$ de $S^{\prime}$ dans $S$ telle que :
 \exit 
 
@@ -139,7 +166,6 @@ Dans une première partie, on étudie quelques propriétés algébriques des mat
 On introduit ensuite la notion de fonction de seuil en probabilité des graphes aléatoires. Les deux parties qui suivent la première partie sont indépendantes de celle-ci, et sont consacrées à l'étude de deux exemples.
 
 \partie\w
-    \op{label=|I|,label deco={Partie #1 --  {} }}
     (Quelques propriétés algébriques des matrices d'adjacence)
     <parti1>
 
@@ -173,9 +199,7 @@ Voici par exemple la matrice d'adjacence $M_{G, \text { ld }}$ du graphe $G$ rep
 
 Soit $\rho$ une permutation du groupe symétrique $S_n$ et $M=\left(m_{i, j}\right)_{1 \leq i, j \leq n}$ une matrice de $\mathcal{M}_n(\mathbf{R})$.
 
-
-
-\xques+\op{m+}\sc{2+5}%1   
+\xques+%1
 % \showthe\leftmargin
 % \showthe\leftmargini
 % \showthe\labelwidth
@@ -199,13 +223,14 @@ En déduire que si $G=(S, A)$ est un graphe non vide, et si $\sigma$ et $\sigma^
     \<\fr{r} P=PM'P^{-1} \text{ avec } P=(\delta_{\rho^{-1}(i),j})_{i,j} \>    
 \end{solution}
 
-\xques\sc{2} %2
+\xques %2
  Justifier qu'une matrice d'adjacence d'un graphe non vide est diagonalisable.
 
  \begin{solution}
     Une matrice d'adjacence est symétrique réelle. Elle est donc diagonalisable. 
  \end{solution}
 
+\medskip
 \xques %3
  Montrer qu'une matrice d'adjacence d'un graphe non vide n'est jamais de rang 1.
 
@@ -239,7 +264,7 @@ Si $G=(S, A)$ est un graphe non vide et si $\sigma$ et $\sigma^{\prime}$ sont de
 On notera $\Chi_G$ ce polynôme caractéristique commun et on dira que $\Chi_G$ est le polynôme caractéristique du graphe $G$.
 Par convention, le polynôme caractéristique du graphe vide est le polynôme constant égal à 1.
 
-\xques\r\sc{2+4} %5
+\xques\r %5
 % \csshow{deco@enumi}
 % \csshow{outerdeco@list}
 % \csshow{deco@link@}
@@ -442,7 +467,7 @@ On définit le graphe $G=(S, A)$ avec $S=S_1 \cup S_2$ et $A=A_1 \cup A_2 \cup\l
     \<\lt{soit au final}
         \nu=\frac{\Chi_{G_1\backslash s_1}(\lambda)}{\Chi_{G_1}(\lambda)}
     \>
-    En revenant maintenant à la \xeqref{charinterm} nous voyons que
+    En revenant maintenant à l'\xeqref{charinterm} nous voyons que
     \<\fr{r}
         \Chi_G(\lambda)=\Chi_{G_1}(\lambda)\times \Chi_{G_2}(\lambda)-
         \Chi_{G_1\backslash s_1}(\lambda)\times \Chi_{G_2\backslash s_2}(\lambda)
@@ -478,7 +503,7 @@ Quel est le rang de la matrice d'adjacence de cette double étoile~?
 \exit 
 
 Dans toute la suite de ce problème, on suppose que $n$ est supérieur à 2 et on notera :
-\xit*+ N l'entier $\binom{n}{2}=\frac{n(n-1)}{2}$ 
+\xit\i+ N l'entier $\binom{n}{2}=\frac{n(n-1)}{2}$ 
 \xit $\Omega_{n}$ l'ensemble des graphes de sommets $S=\iic{ 1, n }$
 \xit $p_n$ un réel dépendant de $n$ appartenant à l'intervalle $\ii]0,1[$ et $q_n=1-p_n$.
 \exit
@@ -535,10 +560,10 @@ Retrouver alors le fait que $\Pr \left(\Omega_n\right)=1$.
         \sum_{a=0}^N\sum_{G\in\Omega_{n,a}}\Pr\delim\sz1(\{G\}) \\ &=
         \sum_{a=0}^N p_n^aq_n^{N-a}\card \Omega_{n,a}
     \>
-    L'application $A\longmapsto G=(S,A)$ est une bijection de l'ensemble $\mathcal P_a(\mathcal A)$ de toutes les parties de cardinal $a$ de $\mathcal A$ dans $\Omega_{n,a}$ donc 
+    L'application $A\longmapsto G=(S,A)$ est une bijection de \score{3} l'ensemble $\mathcal P_a(\mathcal A)$ de toutes les parties de cardinal $a$ de $\mathcal A$ dans $\Omega_{n,a}$ donc 
     \< \card \Omega_{n,a}=\card\mathcal P_a(\mathcal A)=\binom Na\> 
-    \<\r\lt{Ainsi}
-        $\Pr(\Omega)=\sum_{a=0}^N\binom Nap_n^a(1-p_n)^{N-a}=1$
+    \<\lt{Ainsi}\fr{r}
+        \Pr(\Omega)=\sum_{a=0}^N\binom Nap_n^a(1-p_n)^{N-a}=1
     \>
 \end{solution}
 \exit 
@@ -546,7 +571,7 @@ Retrouver alors le fait que $\Pr \left(\Omega_n\right)=1$.
 Dans la suite du problème on étudie la notion de fonction de seuil pour une propriété $\mathcal{P}_n$ vérifiée sur une partie des graphes de $\Omega_n$.
 
 Une fonction de seuil pour la propriété $\mathcal{P}_n$ est une suite $\left(t_k\right)_{k \geq 2}$ de réels strictement positifs tels que :
-\xit*+ si $p_n=o\left(t_n\right)$ alors la limite, lorsque $n$ tend vers $+\infty$, de la probabilité pour que la propriété $\mathcal{P}_n$ soit réalisée vaut 0
+\xit\i+ si $p_n=o\left(t_n\right)$ alors la limite, lorsque $n$ tend vers $+\infty$, de la probabilité pour que la propriété $\mathcal{P}_n$ soit réalisée vaut 0
 \xit si $t_n=o\left(p_n\right)$ alors la limite, lorsque $n$ tend vers $+\infty$, de la probabilité pour que la propriété $\mathcal{P}_n$ soit réalisée vaut 1.
 \exit
 
@@ -639,11 +664,11 @@ Soit $X$ une variable aléatoire définie sur un espace probabilisé $(\Omega, \
      \>
 \end{solution}
 
-\xques %16
+\xques%16
  En déduire une propriété $\mathcal{P}_n$ et sa fonction de seuil associée. 
 
  \begin{solution}
-    %\leavevmode 
+    \leavevmode 
     \<\r\wd{90}
         $P_n$ est la propriété :
         \<\t\wd{80}
@@ -666,7 +691,7 @@ On va étudier la fonction de seuil de la propriété $\mathcal{P}_n$ : "conteni
 On note $X_n^0$ la variable aléatoire réelle discrète définie sur l'espace probabilisé $\mathcal{E}_n$ telle que pour $G \in \Omega_n$, l'entier $X_n^0(G)$ est égal au nombre de copies de $G_0$ contenues dans $G$.
 
 On introduit :
-\xit*+ l'ensemble $\mathcal{C}_0$ des copies de $G_0$ dont les sommets sont inclus dans $\iic{ 1, n }$ :
+\xit\i+ l'ensemble $\mathcal{C}_0$ des copies de $G_0$ dont les sommets sont inclus dans $\iic{ 1, n }$ :
 \<
 \mathcal{C}_0=\delim\sz2\{H \mid H \text { est une copie de } G_0 \text { et } H=\left(S_H, A_H\right) \text { avec } S_H \subset \iic{ 1, n }\}
 \>
@@ -1132,8 +1157,8 @@ $\Sigma_k=\xpo\sz2(\Es(X_n^0)^2)$ lorsque $n$ tend vers $+\infty$.
 \xques %26
  Montrer alors que la suite $\left(k^{-\omega_0}\right)_{k \geq 2}$ est une fonction de seuil pour la propriété $\mathcal{P}_n$.
  \begin{solution}
-    Découle de \poorref{12}, \poorref{20} et \poorref{25}
- \end{solution}
+    Découle des questions \poorref\n{12}, \poorref\n{20} et \poorref\n{25}
+ \end{solution} 
 
 \xques %27 \triangleright$ 
 Retrouver le résultat de la \poorref{16} 
@@ -1159,6 +1184,7 @@ et déterminer une fonction de seuil pour la propriété « contenir une copie d
  \centering 
  {\scshape Fin du problème}
  \vfill
-\end{enonce} 
+
+\end{enonce*} 
 
 \end{document}
