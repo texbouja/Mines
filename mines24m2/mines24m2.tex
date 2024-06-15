@@ -1,36 +1,25 @@
-\documentclass[12pt,solution,score]{cpgedev}
+\documentclass[11pt,straight,solution]{cpgedev}
 
-\cpgegeometry{lstablet}
-\cpgetheme[logo=fes]{ibnghazi}
-\cpgefont{utopia}
+\cpgegeometry{tablet}
+\cpgetheme[logo=rabat]{ibnghazi}
+%\cpgeconfig{mines}
+\cpgefont{libertine}
 
 \usepackage[hypcap=false]{caption}
 \usepackage{parskip}
+
  
 \Matiere{Mathématique}
 \Document{Sujet de concours} 
-\Concours{Mines et Ponts}
+\Concours{Mines et Ponts} 
 \Epreuve{Mathématiques 2}
 \Session{2024} 
-\Duree{4}
-\Auteur{Sadik Boujaida}
-\Classe{MPI}
+\Duree{4} 
+\Auteur{Sadik Boujaida}  
+\Classe{Filière MP}
 \Preauteur{Corrigé proposé par}
 \Email{ibouja@gmail.com}
-\Website{texbouja.ma}
-
-%\titlepagefalse
-\begin{document} 
-
-\cpgesettitle*{
-    |document| \par\bigskip\hrule\bigskip\bigskip |concours| \\  |session| \\ 
-    |epreuve| \par\bigskip |auteur| 
-    %\par \vfill \tableofcontents
-} 
-\cpgesettitle{
-    |document| \par\bigskip\ |concours| \\ |session| \\ 
-    |epreuve| \par\bigskip |auteur|
-}
+\Website{https://github.com/texbouja/Mines2024}
 
 \cpgesetuplists{%
     enumi=  {n=Q|1|, m+ ,s=12pt},
@@ -40,20 +29,55 @@
 \cpgesetlabel{parti}{Partie |I|}
 \cpgesetlabel{partii}{Section |A|}
 
-
 \cpgesetupmath{symbol={corps=R}}
 \let\i\isymb
 \def\X#1{X_{\{#1\}}}
 
+
+
+\begin{document} 
+
 \cpgesethead
-    (|concours| -- |session| -- |epreuve|)
+    (|concours| -- |session| -- |epreuve|) 
     ()
     (|problem|)
 \cpgesetfoot()(|pages|)()
 
+\cpgesettitle{
+    \ifdefmeta{document}
+        |document| \par \vskip\dimexpr\bigskipamount*3
+    \fi
+    \ifdefmeta{concours}
+        |concours| \\
+    \fi
+    \ifdefmeta{epreuve}
+        |epreuve|   
+    \fi
+    \ifdefmeta{session}
+        |session|  \\
+    \fi 
+    \ifdefmeta{auteur}
+        \ifsolution
+            \par \vskip\dimexpr\bigskipamount*2
+            |auteur| 
+        \fi
+    \fi
+}
+\cpgesettitle*{
+        |document| 
+    \bigskip\hrule\bigskip\bigskip
+        |concours|
+        |epreuve| 
+        |session|  \vskip 1cm plus .2fill 
+    \ifsolution 
+        |auteur| 
+        |website|  
+    \fi
+}
+
 \titre
 %\devoir\op{name =ds,number=11,after title=|duree|}{Devoir surveillé}(Théorie des graphe)
-\begin{enonce}{mines24m2}\op{score}
+\begin{enonce*}{mines24m2}\op{score}
     (Phénomènes de seuil dans les graphes)
     <enonce>
     \everymath{\displaystyle}
@@ -142,7 +166,6 @@ Dans une première partie, on étudie quelques propriétés algébriques des mat
 On introduit ensuite la notion de fonction de seuil en probabilité des graphes aléatoires. Les deux parties qui suivent la première partie sont indépendantes de celle-ci, et sont consacrées à l'étude de deux exemples.
 
 \partie\w
-    \op{label=|I|,label deco={Partie #1 --  {} }}
     (Quelques propriétés algébriques des matrices d'adjacence)
     <parti1>
 
@@ -176,7 +199,7 @@ Voici par exemple la matrice d'adjacence $M_{G, \text { ld }}$ du graphe $G$ rep
 
 Soit $\rho$ une permutation du groupe symétrique $S_n$ et $M=\left(m_{i, j}\right)_{1 \leq i, j \leq n}$ une matrice de $\mathcal{M}_n(\mathbf{R})$.
 
-\xques+\sc{2+5}%1
+\xques+%1
 % \showthe\leftmargin
 % \showthe\leftmargini
 % \showthe\labelwidth
@@ -199,8 +222,8 @@ En déduire que si $G=(S, A)$ est un graphe non vide, et si $\sigma$ et $\sigma^
 
     \<\fr{r} P=PM'P^{-1} \text{ avec } P=(\delta_{\rho^{-1}(i),j})_{i,j} \>    
 \end{solution}
-\zques\leavevmode
-\xques+\sc{2+3+1} %2
+
+\xques %2
  Justifier qu'une matrice d'adjacence d'un graphe non vide est diagonalisable.
 
  \begin{solution}
@@ -208,7 +231,7 @@ En déduire que si $G=(S, A)$ est un graphe non vide, et si $\sigma$ et $\sigma^
  \end{solution}
 
 \medskip
-\xques\sc{1+2} %3
+\xques %3
  Montrer qu'une matrice d'adjacence d'un graphe non vide n'est jamais de rang 1.
 
  \begin{solution}
@@ -218,7 +241,7 @@ En déduire que si $G=(S, A)$ est un graphe non vide, et si $\sigma$ et $\sigma^
     est non nul donc 
     \<\fr{r} \rg M\geq 2 \>
  \end{solution}
-\xques\sc{2+2+3}<rgetoile> %4 
+\xques<rgetoile> %4 
  Montrer qu'une matrice d'adjacence d'un graphe dont les sommets non isolés forment un graphe de type étoile est de rang 2 et représenter un exemple de graphe dont la matrice d'adjacence est de rang 2 et qui n'est pas du type précédent.
 
  \begin{solution}
@@ -241,7 +264,7 @@ Si $G=(S, A)$ est un graphe non vide et si $\sigma$ et $\sigma^{\prime}$ sont de
 On notera $\Chi_G$ ce polynôme caractéristique commun et on dira que $\Chi_G$ est le polynôme caractéristique du graphe $G$.
 Par convention, le polynôme caractéristique du graphe vide est le polynôme constant égal à 1.
 
-\xques\r\sc{2+4} %5
+\xques\r %5
 % \csshow{deco@enumi}
 % \csshow{outerdeco@list}
 % \csshow{deco@link@}
@@ -262,7 +285,7 @@ Par convention, le polynôme caractéristique du graphe vide est le polynôme co
   \<\fr{r} \Chi_{G'}=\Chi_{G} \>
  \end{solution}
 
-\xques\sc{3+1}<coeffgraph> %6
+\xques<coeffgraph> %6
  Soit $G=(S, A)$ un graphe avec $|S|=n \geq 2$. On note : \< \Chi_G(X)=X^n+\sum_{k=0}^{n-1} a_k X^k\>
 Donner la valeur de $a_{n-1}$ et exprimer $a_{n-2}$ à l'aide de $|A|$. 
 
@@ -289,7 +312,7 @@ Donner la valeur de $a_{n-1}$ et exprimer $a_{n-2}$ à l'aide de $|A|$.
 
 \end{solution}
 
-\xques\sc{3+4} %7
+\xques %7
  En déduire le polynôme caractéristique d'un graphe à $n$ sommets dont les sommets non isolés forment une étoile à $d$ branches avec $1 \leq d \leq n-1$.
 Déterminer alors les valeurs et vecteurs propres d'une matrice d'adjacence de ce graphe.
  
@@ -359,7 +382,7 @@ Soient $G_1=\left(S_1, A_1\right)$ et $G_2=\left(S_2, A_2\right)$ deux graphes n
 On définit le graphe $G=(S, A)$ avec $S=S_1 \cup S_2$ et $A=A_1 \cup A_2 \cup\left\{\left\{s_1, s_2\right\}\right\}$.
 
 
-\xques\r\sc{2+1+2} %8
+\xques\r %8
 \<\lt{Montrer que :}
 \Chi_G=\Chi_{G_1} \times \Chi_{G_2}-
 \Chi_{G_1\backslash s_1 }  \times \Chi_{G_2 \backslash s_2}
@@ -453,7 +476,7 @@ On définit le graphe $G=(S, A)$ avec $S=S_1 \cup S_2$ et $A=A_1 \cup A_2 \cup\l
 
 \end{solution}
 
-\xques\sc{2+2+4} %9
+\xques %9
  Déterminer le polynôme caractéristique de la double étoile à $d_1+d_2+2$ sommets, constituée respectivement de deux étoiles disjointes à $d_1$ et $d_2$ branches, à qui l'on a ajouté une arête supplémentaire reliant les deux centres des deux étoiles.
 Quel est le rang de la matrice d'adjacence de cette double étoile~?
 
@@ -503,7 +526,7 @@ On admet l'existence d'une probabilité $\Pr $ sur $\left(\Omega_n, \mathcal{P}\
 
 Autrement dit, pour un graphe $G$ donné appartenant à $\Omega_n$, la probabilité qu'une arête $\{i, j\}$ soit contenue dans $G$ est $p_n$, et les arêtes apparaissent dans $G$ de façon indépendante.
 
-\xques\r\sc{1+2+4} %10 
+\xques\r %10 
 Soit $G=(S, A) \in \Omega_n$. Déterminer la probabilité $\Pr (\{G\})$ de l'événement élémentaire $\{G\}$ en fonction de $p_n, q_n, N$ et $a=\operatorname{card}(A)$.
 Retrouver alors le fait que $\Pr \left(\Omega_n\right)=1$.
 
@@ -539,9 +562,8 @@ Retrouver alors le fait que $\Pr \left(\Omega_n\right)=1$.
     \>
     L'application $A\longmapsto G=(S,A)$ est une bijection de \score{3} l'ensemble $\mathcal P_a(\mathcal A)$ de toutes les parties de cardinal $a$ de $\mathcal A$ dans $\Omega_{n,a}$ donc 
     \< \card \Omega_{n,a}=\card\mathcal P_a(\mathcal A)=\binom Na\> 
-    
-    \<\r\lt{Ainsi}
-        $\Pr(\Omega)=\sum_{a=0}^N\binom Nap_n^a(1-p_n)^{N-a}=1$
+    \<\lt{Ainsi}\fr{r}
+        \Pr(\Omega)=\sum_{a=0}^N\binom Nap_n^a(1-p_n)^{N-a}=1
     \>
 \end{solution}
 \exit 
@@ -558,7 +580,7 @@ Une fonction de seuil pour la propriété $\mathcal{P}_n$ est une suite $\left(t
 \wpartii{Deux inégalités}
 Soit $X$ une variable aléatoire définie sur un espace probabilisé $(\Omega, \mathcal{A}, \Pr )$ à valeurs dans $\N$ et admettant une espérance $\Es (X)$ et une variance $\Va (X)$.
 
-\xques\r\sc{1+2+3} %11
+\xques\r %11
 \<\lt{Montrer que :} \Pr (X>0) \leq \Es (X) \>
 
  \begin{solution} 
@@ -571,7 +593,7 @@ Soit $X$ une variable aléatoire définie sur un espace probabilisé $(\Omega, \
     \<\lt{d'où}\fr{r} \xPr(X>0)\leq \xEs(X)\>
  \end{solution}
 
-\xques\sc{2+3+1} %12
+\xques %12
  Montrer que si $\Es (X) \neq 0$, alors $\Pr (X=0) \leq \frac{\Va (X)}{(\Es (X))^2}$.
  
 
@@ -591,7 +613,7 @@ Soit $X$ une variable aléatoire définie sur un espace probabilisé $(\Omega, \
 
 \wpartii{ Une fonction de seuil}
 
-\xques\r\sc{1+2+4} %13
+\xques\r %13
  Quelle est la loi suivie par la variable aléatoire $A_n$ représentant le nombre d'arêtes d'un graphe de $\Omega_n$ ?
 
  \begin{solution}
@@ -606,7 +628,7 @@ Soit $X$ une variable aléatoire définie sur un espace probabilisé $(\Omega, \
      \>
  \end{solution} 
 
-\xques\sc{2+5} %14
+\xques %14
  Montrer que si $p_n=o\left(\frac{1}{n^2}\right)$ au voisinage de $+\infty$, alors $\llim _{n \rightarrow+\infty} \Pr \left(A_n>0\right)=0$.
  \begin{solution}
     \<\lt{On a}\al{t}
@@ -622,7 +644,7 @@ Soit $X$ une variable aléatoire définie sur un espace probabilisé $(\Omega, \
   \end{solution}
 
 
-\xques\sc{4} %15
+\xques %15
  Montrer que si $\frac{1}{n^2}=o\left(p_n\right)$ au voisinage de $+\infty$, alors $\llim _{n \rightarrow+\infty} \Pr \left(A_n>0\right)=1$. 
 
 \begin{solution}
@@ -642,7 +664,7 @@ Soit $X$ une variable aléatoire définie sur un espace probabilisé $(\Omega, \
      \>
 \end{solution}
 
-\xques\sc{3+3}%16
+\xques%16
  En déduire une propriété $\mathcal{P}_n$ et sa fonction de seuil associée. 
 
  \begin{solution}
@@ -1163,6 +1185,6 @@ et déterminer une fonction de seuil pour la propriété « contenir une copie d
  {\scshape Fin du problème}
  \vfill
 
-\end{enonce} 
+\end{enonce*} 
 
 \end{document}
