@@ -1,12 +1,12 @@
-\documentclass[11pt,straight,solution]{cpgedev}
+\documentclass[11pt,solution]{cpgedev}
 
-\cpgegeometry{tablet}
+\cpgegeometry{lstablet} 
 \cpgetheme[logo=rabat]{ibnghazi}
 %\cpgeconfig{mines}
 \cpgefont{libertine}
 
 \usepackage[hypcap=false]{caption}
-\usepackage{parskip}
+\usepackage{parskip} 
 
  
 \Matiere{Mathématique}
@@ -16,14 +16,15 @@
 \Session{2024} 
 \Duree{4} 
 \Auteur{Sadik Boujaida}  
-\Classe{Filière MP}
+\Classe{Classes MP}
 \Preauteur{Corrigé proposé par}
 \Email{ibouja@gmail.com}
 \Website{https://github.com/texbouja/Mines2024}
 
 \cpgesetuplists{%
     enumi=  {n=Q|1|, m+ ,s=12pt},
-    enumii= {n=Q|Q|\itshape|a|,m*, s=6pt}
+    enumii= {n=|Q|.|a|},
+    enumiii={n=|Q|.|q|.|i|}
 }
 
 \cpgesetlabel{parti}{Partie |I|}
@@ -33,9 +34,7 @@
 \let\i\isymb
 \def\X#1{X_{\{#1\}}}
 
-
-
-\begin{document} 
+\begin{document}  
 
 \cpgesethead
     (|concours| -- |session| -- |epreuve|) 
@@ -45,20 +44,20 @@
 
 \cpgesettitle{
     \ifdefmeta{document}
-        |document| \par \vskip\dimexpr\bigskipamount*3
+        |document| \par \bigskip\bigskip 
     \fi
     \ifdefmeta{concours}
         |concours| \\
     \fi
     \ifdefmeta{epreuve}
-        |epreuve|   
+        |epreuve|   \\
     \fi
     \ifdefmeta{session}
         |session|  \\
     \fi 
     \ifdefmeta{auteur}
         \ifsolution
-            \par \vskip\dimexpr\bigskipamount*2
+            \par \bigskip
             |auteur| 
         \fi
     \fi
@@ -77,8 +76,8 @@
 
 \titre
 %\devoir\op{name =ds,number=11,after title=|duree|}{Devoir surveillé}(Théorie des graphe)
-\begin{enonce*}{mines24m2}\op{score}
-    (Phénomènes de seuil dans les graphes)
+\begin{enonce}{mines24m2}\op{score}
+    [](Phénomènes de seuil dans les graphes)
     <enonce>
     \everymath{\displaystyle}
     Dans ce problème, $n$ désigne un entier supérieur à 1 .
@@ -647,8 +646,10 @@ Soit $X$ une variable aléatoire définie sur un espace probabilisé $(\Omega, \
 \xques %15
  Montrer que si $\frac{1}{n^2}=o\left(p_n\right)$ au voisinage de $+\infty$, alors $\llim _{n \rightarrow+\infty} \Pr \left(A_n>0\right)=1$. 
 
+ 
+
 \begin{solution}
-    D'après la \poorref\n{12} on a  
+    D'après la \poorref\n{Q12} on a  
     \<
         P(A_n)\leq \frac{\Va(A_n)}{\Es(A_n)^2}
     \>
@@ -726,7 +727,7 @@ On introduit :
             G\in\Omega_n\mid A_H\subset A_G\text{ et } a_G=a_H+b
         \}
     \>
-    Or pout tout $b\in\iic{1,N-a_H}$, il y a $\ts\binom{N-a_h}{b}$ façon de compléter $A_H$ en une partie de $\mathcal A$ de cardinal $a_H+b$ et pour chaque partie $A$ de $\mathcal A$ qui vérifie cette condition on a selon la \poorref{10}  
+    Or pout tout $b\in\iic{1,N-a_H}$, il y a $\ts\binom{N-a_h}{b}$ façon de compléter $A_H$ en une partie de $\mathcal A$ de cardinal $a_H+b$ et pour chaque partie $A$ de $\mathcal A$ qui vérifie cette condition on a selon la \poorref{Q10}  
     \< \xPr\sz1(\{(S,A)\})= p_n^{a_H+b}q_n^{N-a_H-b} \>
     \<\lt{donc}\compactbreak{
         \xPr(
@@ -839,7 +840,7 @@ Exprimer le cardinal de $\mathcal{C}_0$ à l'aide de $c_0$ et en utilisant un ma
         n^{s_{H_0}}p_n^{a_{H_0}} =
         \xpo\sz2(n^{s_{H_0}-\omega_0 a_{H_0}})=\osymb(1) 
     \>
-    D'après la \xeqref{x0nmaj} on a donc $\Es(X_0^n)\longrightarrow 0$. D'autre part, comme dans la \poorref{14}
+    D'après la \xeqref{x0nmaj} on a donc $\Es(X_0^n)\longrightarrow 0$. D'autre part, comme dans la \poorref{Q14}
     \<\al{}
         \Pr(X_n^0>0) &=\sum_{k=1}^{+\infty}\Pr(X_n^0=k)
         \\ &\leq 
@@ -861,7 +862,7 @@ Montrer que l'espérance $\xEs\sz2(\delim\sz1(X_n^0)^2)$ vérifie :
 \xEs\sz2(\delim\sz1(X_n^0)^2)=\sum_{\left(H, H^{\prime}\right) \in \mathcal C_0^2} \Pr \left(H \cup H^{\prime} \subset G\right)=\sum_{\left(H, H^{\prime}\right) \in \mathcal C_0^2} p_n^{2 a_0-a_{H \cap H^{\prime}} .} .
 \>
 \begin{mini}{errata}
-    Cette formule est très ambiguë puisqu'elle ne précise pas la nature de $G$ ni la nature des «graphe»  $H\cup H'$ et $H\cap H'$. Le développement dans le corrigé les introduira de façon naturelle. 
+    Cette formule est ambiguë puisqu'elle ne précise pas la nature du $G$ dans \og l'événement\fg $(H\cup H'\subset G)$, ni celle des «graphes»  $H\cup H'$ et $H\cap H'$. Le développement dans le corrigé les introduira de façon naturelle. 
 \end{mini}
 
 \begin{solution} Rappelons l'expression 
@@ -1022,7 +1023,7 @@ Pour $k \in\left[0, s_0\right]$, on note :
             {(S,A)}
             {\delim\sz1(S\cap S_H, S\setminus (S\cap S_H))}
     \>
-     Cette application est surjective car pour tout couple $(S_1,S_2)\in \mathcal P_{k}(S_H)\times \mathcal P_{s_0-k}(\iic{1,n}\setminus S_H)$ il y a au moins une copie du graphe $G_0$ de sommets $S=S_1\cup S_2$ (moyennant une bijection $\sigma:S_0\longrightarrow S$) et que $|S\cap S_H|=|S_1|=k$. Ensuite toute copie de $G_0$ de sommets $S=S_1\cup S_2$ et un élément de $\Omega_H$. Or d'après la \poorref{18}, le nombre de ces copies est $c_0$. Donc tout élément de $\mathcal P_{k}(S_H)\times \mathcal P_{s_0-k}(\iic{1,n}\setminus S_H)$ admet exactement $c_0$ antécédents par notre application. Alors
+     Cette application est surjective car pour tout couple $(S_1,S_2)\in \mathcal P_{k}(S_H)\times \mathcal P_{s_0-k}(\iic{1,n}\setminus S_H)$ il y a au moins une copie du graphe $G_0$ de sommets $S=S_1\cup S_2$ (moyennant une bijection $\sigma:S_0\longrightarrow S$) et que $|S\cap S_H|=|S_1|=k$. Ensuite toute copie de $G_0$ de sommets $S=S_1\cup S_2$ et un élément de $\Omega_H$. Or d'après la \poorref{Q18}, le nombre de ces copies est $c_0$. Donc tout élément de $\mathcal P_{k}(S_H)\times \mathcal P_{s_0-k}(\iic{1,n}\setminus S_H)$ admet exactement $c_0$ antécédents par notre application. Alors
      \< 
         |\Omega_H|=c_0\delim\sz1|\mathcal P_{k}(S_H)\times \mathcal P_{s_0-k}(\iic{1,n}\setminus S_H)|=c_0\binom{s_0}k\binom{n-s_0}{s_0-k}
      \>
@@ -1115,7 +1116,7 @@ $\Sigma_k=\xpo\sz2(\Es(X_n^0)^2)$ lorsque $n$ tend vers $+\infty$.
         \xcup_{k=0}^{s_0}\sz3\{(H,H')\in\mathcal C_0^2\tq1
         s_{H\cap H'}=k\} boh
     \> 
-    les formules de la \poorref\n{21} signifient que 
+    les formules de la \poorref\n{Q21} signifient que 
     \<\xEs\sz1((X_n^0)^2)=\sum_{k=0}^{s_0}\Sigma_k\>
     \<\lt{et donc}
         \frac{\xVa\sz1(X_n^0)}{\xEs\sz1(X_n^0)^2}=
@@ -1135,9 +1136,9 @@ $\Sigma_k=\xpo\sz2(\Es(X_n^0)^2)$ lorsque $n$ tend vers $+\infty$.
         \\ &=
         \sum_{H\in\mathcal C_0}\Es(X_H)\Es(X_{n-s_0}^0) 
         \\ &= 
-        \Es(X_{n}^0)\Es(X_{n-s_0}^0)
+        \Es(X_{n}^0)\Es(X_{n-s_0}^0) 
     \>
-    Des calculs effectués précédemment dans les questions \poorref\n\c{18} et \poorref\n\c{19} donnent 
+    Des calculs effectués précédemment dans les questions \poorref\n\c{Q18} et \poorref\n\c{Q19} donnent 
     \< 
         \Es(X_n^0)=|C_0|p_n^{a_0}=c_0\binom{n}{s_0}p_n^{a_0} 
     \>
@@ -1154,20 +1155,20 @@ $\Sigma_k=\xpo\sz2(\Es(X_n^0)^2)$ lorsque $n$ tend vers $+\infty$.
     \>
  \end{solution}
 
-\xques %26
+\xques %26 
  Montrer alors que la suite $\left(k^{-\omega_0}\right)_{k \geq 2}$ est une fonction de seuil pour la propriété $\mathcal{P}_n$.
  \begin{solution}
-    Découle des questions \poorref\n{12}, \poorref\n{20} et \poorref\n{25}
+    Découle des questions \poorref\n{Q12}, \poorref\n{Q20} et \poorref\n{Q25}
  \end{solution} 
 
 \xques %27 \triangleright$ 
-Retrouver le résultat de la \poorref{16} 
+Retrouver le résultat de la \poorref{Q16} 
 et déterminer une fonction de seuil pour la propriété « contenir une copie de l'étoile à $d$ branches" avec $d$ entier fixé supérieur à 1.
 
  \begin{solution}
     La variable $A_n$ est en fait égale à $X_n^0$ lorsque le graphe $G_0$ est formé de deux sommets et une arête. Dans ca cas le seul graphe $H\subset G_0$ qui contient au moins une arête est $G_0$ lui même et par suite 
     \<\fr{r} \omega_0=2\> 
-    On retrouve ainsi le résultat de la \poorref{16}.
+    On retrouve ainsi le résultat de la \poorref{Q16}.
 
     Lorsque $G_0$ est une étoile à $d\geq 1$ branches alors un sous graphe $H\subset G_0$ est soit a sommets isolés s'il ne contient pas le centre $s$ de $G_0$, soit il est lui même une étoile s'il le contient. Donc 
     \< \omega_0=\min_{2\leq k\leq d}\frac{k}{k-1} \>
@@ -1185,6 +1186,8 @@ et déterminer une fonction de seuil pour la propriété « contenir une copie d
  {\scshape Fin du problème}
  \vfill
 
-\end{enonce*} 
+\end{enonce} 
+
+\solutions
 
 \end{document}
