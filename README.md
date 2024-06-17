@@ -1,2 +1,5 @@
 # Épreuves Mines 2024
 Sont proposés les fichiers sources (compilables) des épreuves Mines 2024, enoncé et corrigé. Ils utilisent le système LaTeX avec le kit cpgeKIT qui est publiquement disponible sur mon profile github à l'adresse https://github.com/texbouja/cpgekit
+
+Seule l'épreuve Mathématique 2 a été achevée. Le dossier mines24m2 est composé d'un seul fichier .tex contenant l'énoncé et le corrigé. Chaque question étant immédiatement suivie de sa solution. Dans le PDF produit les solutions sont regroupées à la fin du document, les numéros des questions et de leurs solutions sont des hyperliens qui permettent d'aller des unes vers les autres. 
+C'est l'une des configurations possibles avec cpgeKIT. Voir le dossier MathB sur https://github.com/texbouja/XENS2024 pour une autre façon d'utiliser cpgeKIT.
